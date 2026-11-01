@@ -1,0 +1,174 @@
+{
+  "dataset_source": "https://archive.ics.uci.edu/dataset/45/heart+disease",
+  "feature_names": [
+    "age",
+    "sex",
+    "cp",
+    "trestbps",
+    "chol",
+    "fbs",
+    "restecg",
+    "thalach",
+    "exang",
+    "oldpeak",
+    "slope",
+    "ca",
+    "thal"
+  ],
+  "expected_feature_types": {
+    "age": "number",
+    "sex": "category",
+    "cp": "category",
+    "trestbps": "number",
+    "chol": "number",
+    "fbs": "category",
+    "restecg": "category",
+    "thalach": "number",
+    "exang": "category",
+    "oldpeak": "number",
+    "slope": "category",
+    "ca": "category",
+    "thal": "category"
+  },
+  "categorical_values": {
+    "sex": [
+      0,
+      1
+    ],
+    "cp": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "fbs": [
+      0,
+      1
+    ],
+    "restecg": [
+      0,
+      1,
+      2
+    ],
+    "exang": [
+      0,
+      1
+    ],
+    "slope": [
+      1,
+      2,
+      3
+    ],
+    "ca": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "thal": [
+      3,
+      6,
+      7
+    ]
+  },
+  "numeric_ranges": {
+    "age": {
+      "min": 29.0,
+      "max": 77.0
+    },
+    "trestbps": {
+      "min": 94.0,
+      "max": 200.0
+    },
+    "chol": {
+      "min": 126.0,
+      "max": 564.0
+    },
+    "thalach": {
+      "min": 71.0,
+      "max": 202.0
+    },
+    "oldpeak": {
+      "min": 0.0,
+      "max": 6.2
+    }
+  },
+  "target_mapping": {
+    "0": "No heart disease",
+    "1": "Heart disease present (original values 1\u20134)"
+  },
+  "selected_model_name": "Logistic Regression",
+  "selection_metric": "5-fold stratified training CV ROC-AUC",
+  "selection_cv_roc_auc": 0.9024931590148981,
+  "test_metrics": {
+    "accuracy": 0.8852459016393442,
+    "precision": 0.8387096774193549,
+    "recall": 0.9285714285714286,
+    "f1": 0.8813559322033898,
+    "roc_auc": 0.9664502164502166
+  },
+  "model_comparison": [
+    {
+      "model": "Logistic Regression",
+      "Accuracy": 0.8471074380165289,
+      "Precision": 0.87,
+      "Recall": 0.7837837837837838,
+      "F1": 0.8246445497630331,
+      "ROC-AUC": 0.9052334777525617
+    },
+    {
+      "model": "Random Forest",
+      "Accuracy": 0.8181818181818182,
+      "Precision": 0.8073394495412844,
+      "Recall": 0.7927927927927928,
+      "F1": 0.8,
+      "ROC-AUC": 0.8932329275840726
+    },
+    {
+      "model": "KNN",
+      "Accuracy": 0.8223140495867769,
+      "Precision": 0.8207547169811321,
+      "Recall": 0.7837837837837838,
+      "F1": 0.8018433179723502,
+      "ROC-AUC": 0.8675125507186575
+    },
+    {
+      "model": "Decision Tree",
+      "Accuracy": 0.6983471074380165,
+      "Precision": 0.6666666666666666,
+      "Recall": 0.6846846846846847,
+      "F1": 0.6755555555555556,
+      "ROC-AUC": 0.6973041744034111
+    }
+  ],
+  "tuned_comparison": [
+    {
+      "model": "Logistic Regression",
+      "CV ROC-AUC": 0.9024931590148981,
+      "CV F1": 0.8245007436109558,
+      "CV Recall": 0.783399209486166
+    },
+    {
+      "model": "Random Forest",
+      "CV ROC-AUC": 0.9012679751810186,
+      "CV F1": 0.7810512561250681,
+      "CV Recall": 0.7644268774703556
+    },
+    {
+      "model": "KNN",
+      "CV ROC-AUC": 0.8808804319673886,
+      "CV F1": 0.7989255189255189,
+      "CV Recall": 0.7826086956521738
+    },
+    {
+      "model": "Decision Tree",
+      "CV ROC-AUC": 0.8357611792394402,
+      "CV F1": 0.7428279981260391,
+      "CV Recall": 0.7288537549407115
+    }
+  ],
+  "source_rows": 303,
+  "clean_rows": 303,
+  "train_rows": 242,
+  "test_rows": 61
+}

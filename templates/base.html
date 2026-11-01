@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Educational heart disease prediction with machine learning">
+  <title>{% block title %}HeartWise Lab{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="{{ url_for('index') }}"><span class="brand-mark">♥</span> HeartWise <span class="brand-light">Lab</span></a>
+      <nav aria-label="Main navigation"><a href="{{ url_for('index') }}">Predict</a><a href="{{ url_for('about') }}">About</a></nav>
+    </div>
+  </header>
+  <main class="container">{% block content %}{% endblock %}</main>
+  <footer class="footer"><div class="container">SPPU AI &amp; ML mini-project · Educational use only · Not a medical diagnosis</div></footer>
+</body>
+</html>

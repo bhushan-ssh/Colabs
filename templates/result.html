@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}Prediction result · HeartWise Lab{% endblock %}
+{% block content %}
+<section class="page-intro"><span class="eyebrow">Model output</span><h1>Your prediction result</h1><p>This output summarizes what the trained pipeline predicted from your entries.</p></section>
+<section class="card result-card {{ 'positive' if prediction else 'negative' }}">
+  <span class="result-badge">Predicted class {{ prediction }}</span><h2>{{ result }}</h2>
+  <p>The model selected in the notebook was <strong>{{ model_name }}</strong>.</p>
+  {% if probability is not none %}<div class="probability"><strong>{{ '%.1f'|format(probability * 100) }}%</strong><span>Model-estimated probability for the predicted class. This is not a clinically validated risk percentage.</span></div>{% endif %}
+</section>
+<div class="info-strip"><span class="dot"></span> This educational result cannot diagnose, exclude, or guide treatment of heart disease. Consult a qualified clinician.</div>
+<section class="card summary-card"><h2>Submitted inputs</h2><dl class="summary-grid">{% for field in fields %}<div><dt>{{ field.label }}</dt><dd>{{ display_values[field.name] }}</dd></div>{% endfor %}</dl></section>
+<div class="actions"><a class="button button-primary" href="{{ url_for('index') }}">Back to form</a></div>
+{% endblock %}

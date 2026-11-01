@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}Prediction form · HeartWise Lab{% endblock %}
+{% block content %}
+<section class="hero">
+  <div><span class="eyebrow">Machine learning demonstration</span><h1>Explore a heart disease prediction</h1>
+    <p>Enter the 13 measurements used in the UCI Cleveland dataset. The saved model will estimate a class for this educational exercise.</p></div>
+  <div class="hero-icon" aria-hidden="true">♥</div>
+</section>
+<div class="info-strip"><span class="dot"></span> A prediction from historical data is not a diagnosis. Seek a clinician for health concerns.</div>
+{% if errors.get('form') %}<div class="error-summary" role="alert">{{ errors['form'] }}</div>{% endif %}
+<form action="{{ url_for('predict') }}" method="post" novalidate>
+  {% for group in ['Personal information', 'Symptoms and history', 'Measurements', 'Exercise test', 'Clinical tests'] %}
+  <section class="card form-section"><div class="section-head"><span class="section-number">{{ loop.index|string }}</span><div><h2>{{ group }}</h2><p>Complete each field using the recorded measurement or test result.</p></div></div>
+    <div class="form-grid">
+    {% for field in fields if field.group == group %}
+      <div class="field"><label for="{{ field.name }}">{{ field.label }}</label>
+      {% if field.options %}
+        <select id="{{ field.name }}" name="{{ field.name }}" required {% if errors.get(field.name) %}aria-invalid="true" aria-describedby="error-{{ field.name }}"{% endif %}>
+          <option value="">Select an option</option>
+          {% for value, label in field.options %}<option value="{{ value }}" {% if values.get(field.name) == value %}selected{% endif %}>{{ label }}</option>{% endfor %}
+        </select>
+      {% else %}
+        {% set limits = metadata.numeric_ranges[field.name] %}
+        <input id="{{ field.name }}" name="{{ field.name }}" type="number" min="{{ limits.min }}" max="{{ limits.max }}" step="{{ 'any' if field.name == 'oldpeak' else '1' }}" value="{{ values.get(field.name, '') }}" placeholder="{{ '%g'|format(limits.min) }}–{{ '%g'|format(limits.max) }}" required {% if errors.get(field.name) %}aria-invalid="true" aria-describedby="error-{{ field.name }}"{% endif %}>
+        <small>Dataset range: {{ '%g'|format(limits.min) }} to {{ '%g'|format(limits.max) }}</small>
+      {% endif %}
+      {% if errors.get(field.name) %}<small class="field-error" id="error-{{ field.name }}" role="alert">{{ errors[field.name] }}</small>{% endif %}
+      </div>
+    {% endfor %}
+    </div>
+  </section>
+  {% endfor %}
+  <div class="actions"><button class="button button-primary" type="submit">Generate prediction <span aria-hidden="true">→</span></button><button class="button button-secondary" type="reset">Reset form</button></div>
+</form>
+{% endblock %}

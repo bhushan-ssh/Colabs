@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}About · HeartWise Lab{% endblock %}
+{% block content %}
+<section class="page-intro"><span class="eyebrow">About the project</span><h1>From source data to a working prediction</h1><p>A student-focused demonstration of the full machine learning workflow.</p></section>
+<section class="card prose"><h2>The problem</h2><p>The system maps the original UCI Cleveland diagnosis values 0–4 into two classes: 0 means no disease recorded; 1–4 mean disease present. It accepts all 13 original input features.</p>
+  <h2>Dataset</h2><p>The <a href="https://archive.ics.uci.edu/dataset/45/heart+disease">official UCI Heart Disease dataset</a> contains {{ metadata.source_rows }} Cleveland records in this project. Source missing values are retained and handled by imputers fitted within the training pipeline.</p>
+  <h2>Workflow and algorithms</h2><p>The notebook explores the data, uses an 80:20 stratified split, compares Logistic Regression, KNN, Decision Tree, and Random Forest, performs stratified cross-validation and GridSearchCV, then evaluates one selected model on the held-out test set.</p>
+  <p>The currently exported model is <strong>{{ metadata.selected_model_name }}</strong>. Flask loads the complete saved preprocessing and classification pipeline.</p>
+  <h2>Technology</h2><p>Python, Pandas, NumPy, scikit-learn, Matplotlib, Seaborn, Joblib, Jupyter Notebook, Flask, HTML, and CSS.</p>
+  <h2>Limitations and disclaimer</h2><p>The dataset is small and historical. Its measurements, labels, and population may differ from current clinical practice. Scores from this dataset are not evidence of clinical safety or generalizability. The displayed model probability is not a medically validated risk estimate. Do not use this application for diagnosis or treatment; speak with a qualified healthcare professional.</p></section>
+{% endblock %}
